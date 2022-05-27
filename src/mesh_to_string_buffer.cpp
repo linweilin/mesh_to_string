@@ -77,13 +77,15 @@ std::string MeshToString::VertexPropertyList::generateString()
 
         for(size_t i = 0; i < vertices_.size(); ++i) {
 
-            auto temp_string = std::to_string(vertices_.at(i)(0)) + " "
-                             + std::to_string(vertices_.at(i)(1)) + " "
-                             + std::to_string(vertices_.at(i)(2)) + " "
-                             + std::to_string(static_cast<int>(vertex_colors_.at(i)(0))) + " "
-                             + std::to_string(static_cast<int>(vertex_colors_.at(i)(1))) + " "
-                             + std::to_string(static_cast<int>(vertex_colors_.at(i)(2))) + "\n";
-            list_.push_back(std::move(temp_string));
+            std::stringstream temp_string_stream;
+            temp_string_stream << vertices_.at(i)(0) << " "
+                               << vertices_.at(i)(1) << " "
+                               << vertices_.at(i)(2) << " "
+                               << static_cast<int>(vertex_colors_.at(i)(0)) << " "
+                               << static_cast<int>(vertex_colors_.at(i)(1)) << " "
+                               << static_cast<int>(vertex_colors_.at(i)(2)) << "\n";
+
+            list_.push_back(std::move(temp_string_stream.str()));
 
             string_buffer_size += sizeof(list_.at(i));      // 粗略计算每一行的buffer大小
         }
@@ -92,10 +94,12 @@ std::string MeshToString::VertexPropertyList::generateString()
 
         for(size_t i = 0; i < vertices_.size(); ++i) {
 
-            auto temp_string = std::to_string(vertices_.at(i)(0)) + " "
-                             + std::to_string(vertices_.at(i)(1)) + " "
-                             + std::to_string(vertices_.at(i)(2)) + "\n";
-            list_.push_back(std::move(temp_string));
+            std::stringstream temp_string_stream;
+            temp_string_stream << vertices_.at(i)(0) << " "
+                               << vertices_.at(i)(1) << " "
+                               << vertices_.at(i)(2) << "\n";
+
+            list_.push_back(std::move(temp_string_stream.str()));
 
             string_buffer_size += sizeof(list_.at(i));      // 粗略计算每一行的buffer大小
         }
@@ -120,10 +124,11 @@ std::string MeshToString::TrianglePropertyList:: generateString()
     size_t string_buffer_size = 0;
     for(size_t i = 0; i < vertex_indices_.size(); ++i) {
 
-        auto temp_string = "3 " + std::to_string(vertex_indices_.at(i)(0)) + " "
-                                + std::to_string(vertex_indices_.at(i)(1)) + " "
-                                + std::to_string(vertex_indices_.at(i)(2)) + "\n";
-        list_.push_back(std::move(temp_string));
+        std::stringstream temp_string_stream;
+        temp_string_stream << "3 " << vertex_indices_.at(i)(0) << " "
+                                   << vertex_indices_.at(i)(1) << " "
+                                   << vertex_indices_.at(i)(2) << "\n";
+        list_.push_back(std::move(temp_string_stream.str()));
 
         string_buffer_size += sizeof(list_.at(i));      // 粗略计算每一行的buffer大小
     }
