@@ -1,13 +1,13 @@
 #include <open3d/Open3D.h>
 #include <glog/logging.h>
 
-#include "mesh_to_string_buffer.h"
+#include "mesh_to_string.h"
 
 
 int main(int argc, char * argv[])
 {
     
-    LOG(INFO) << "Hello, test_mesh_to_string_buffer" << std::endl;
+    LOG(INFO) << "Hello, test_mesh_to_string" << std::endl;
 
     auto mesh = open3d::io::CreateMeshFromFile(argv[1]);
 

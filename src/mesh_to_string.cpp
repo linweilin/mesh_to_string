@@ -1,4 +1,4 @@
-#include "mesh_to_string_buffer.h"
+#include "mesh_to_string.h"
 
 MeshToString::MeshToString(TriangleMeshPtr triangle_mesh)
     : triangle_mesh_(std::make_shared<open3d::geometry::TriangleMesh>(*(triangle_mesh.get()))), vertex_size_(triangle_mesh->vertices_.size()), has_vertex_color_(triangle_mesh->HasVertexColors()), triangle_size_(triangle_mesh->triangles_.size()), vertex_property_list_(triangle_mesh->vertices_, triangle_mesh->vertex_colors_), triangle_property_list_(triangle_mesh->triangles_)

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(mesh_to_string_buffer)
+project(mesh_to_string)
 
 set(CMAKE_CXX_STANDARD 11) 
 set(CMAKE_BUILD_TYPE "Release")
@@ -31,8 +31,8 @@ link_directories(${Open3D_LIBRARY_DIRS})
 # add_executable(test_open3d example/test_open3d.cpp)    
 # target_link_libraries(test_open3d ${Open3D_LIBRARIES})
 
-add_library(mesh_to_string_buffer src/mesh_to_string_buffer.cpp)
-target_link_libraries(mesh_to_string_buffer ${Open3D_LIBRARIES} glog::glog)
+add_library(mesh_to_string src/mesh_to_string.cpp)
+target_link_libraries(mesh_to_string ${Open3D_LIBRARIES} glog::glog)
 
-add_executable(test_mesh_to_string_buffer example/test_mesh_to_string_buffer)
-target_link_libraries(test_mesh_to_string_buffer mesh_to_string_buffer)
+add_executable(test_mesh_to_string example/test_mesh_to_string)
+target_link_libraries(test_mesh_to_string mesh_to_string)
