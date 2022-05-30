@@ -24,7 +24,7 @@ struct MeshToString
 
     struct Header
     {
-                std::string position_string_{"property float x\nproperty float y\nproperty float z\n"};
+                std::string position_string_{"property double x\nproperty double y\nproperty double z\n"};
 
                 std::string color_string_{"property uchar red\nproperty uchar green\nproperty uchar blue\n"};
 
