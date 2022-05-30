@@ -32,10 +32,8 @@ std::string MeshToString::generateHeaderString()
         header_.header_string_ += header_.color_string_;
     }
 
-    if(has_triangle_) {
-
-        header_.header_string_ += header_.triangle_string_ + std::to_string(triangle_size_) + "\n";
-    }
+    // Need to add this even when there is no triangle
+    header_.header_string_ += header_.triangle_string_ + std::to_string(triangle_size_) + "\n";
 
     header_.header_string_ += header_.list_string_ + header_.end_header_;
 
