@@ -18,7 +18,20 @@ int main(int argc, char * argv[])
 
     MeshToString mesh_to_string(mesh);
     auto mesh_string = mesh_to_string.generateFileString();
-    LOG(INFO) << "\n" << mesh_string;
+    // LOG(INFO) << "\n" << mesh_string;
+    
+
+    auto mesh_from_string = mesh_to_string.generateMeshFromString(mesh_string);
+    if(mesh_from_string == nullptr) {
+
+        LOG(FATAL) << "mesh_from_string is nullptr.";
+    }
+    LOG(INFO) << "result mesh:\n"
+        << "vertex size = " << mesh_from_string->vertices_.size() << "\n"
+        << "vertex color size = " << mesh_from_string->vertex_colors_.size() << "\n"
+        << "triangle size = " << mesh_from_string->triangles_.size();
+
+    open3d::visualization::DrawGeometries({mesh_from_string}, "test mesh_from_string");
 
     return 0;
 }

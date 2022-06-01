@@ -34,5 +34,5 @@ link_directories(${Open3D_LIBRARY_DIRS})
 add_library(mesh_to_string src/mesh_to_string.cpp)
 target_link_libraries(mesh_to_string ${Open3D_LIBRARIES} glog::glog)
 
-add_executable(test_mesh_to_string example/test_mesh_to_string)
+add_executable(test_mesh_to_string example/test_mesh_to_string.cpp)
 target_link_libraries(test_mesh_to_string mesh_to_string)

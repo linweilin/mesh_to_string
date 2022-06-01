@@ -1,3 +1,5 @@
+#pragma once
+
 #include <open3d/Open3D.h>
 #include <open3d/geometry/TriangleMesh.h>
 
@@ -14,6 +16,7 @@ using TriangleMeshPtr = std::shared_ptr<open3d::geometry::TriangleMesh>;
 
 struct MeshToString
 {
+    MeshToString() { }
     MeshToString(TriangleMeshPtr triangle_mesh);
 
     size_t vertex_size_{ 0 };
@@ -24,18 +27,19 @@ struct MeshToString
 
     struct Header
     {
-                std::string position_string_{"property double x\nproperty double y\nproperty double z\n"};
+        std::string position_string_{"property double x\nproperty double y\nproperty double z\n"};
 
-                std::string color_string_{"property uchar red\nproperty uchar green\nproperty uchar blue\n"};
+        std::string color_string_{"property uchar red\nproperty uchar green\nproperty uchar blue\n"};
 
-            std::string vertex_string_{"element vertex "};
+        std::string vertex_string_{"element vertex "};
 
-            std::string triangle_string_{"element face "};
+        std::string triangle_string_{"element face "};
 
         std::string file_format_{"ply\n"};
         std::string ply_format_{"format ascii 1.0\n"};
+        std::string comment_{"comment Created by PX\n"};
         std::string list_string_{"property list uchar uint vertex_indices\n"};
-        std::string end_header_{"end_header\n"};
+        std::string end_header_{"end_header"};
 
         std::string header_string_{""};
 
@@ -71,6 +75,10 @@ struct MeshToString
 
     std::string generateHeaderString();
     std::string generateFileString();
+
+    std::vector<std::string> splitSubstringBySpace(std::string string);
+    bool getVertexAndTriangleSize(const std::vector<std::string> &lines, size_t &end_header_line);
+    TriangleMeshPtr generateMeshFromString(const std::string &mesh_to_string);
 
     // TODO Add apostrophe at first and in the end of the string
     // The apostrophe is for WKT string
